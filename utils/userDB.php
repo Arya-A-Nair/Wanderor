@@ -62,33 +62,84 @@
             return null;
         }
     } 
+
+    function removeTrekFromCart($TID){
+        global $projectDB;
+        connectProjectDB();
+        $query="DELETE FROM trekcart WHERE UID=:UID AND TID=:TID";
+        try{
+            session_start();    
+            $statement=$projectDB->prepare($query);
+            $statement->bindParam(":UID",$_SESSION['UID']);
+            $statement->bindParam(":TID",$TID);
+            $statement->execute();
+            return true;
+        }catch(PDOException $e){
+            return false;
+        }
+    }
     
+    function cartTotal(){
+        global $projectDB;
+        connectProjectDB();
+        $query="SELECT SUM(price) FROM treks,trekcart where treks.tId=trekcart.TID AND UID=:UID";
+        try{
+            session_start();    
+            $statement=$projectDB->prepare($query);
+            $statement->bindParam(":UID",$_SESSION['UID']);
+            $statement->execute();
+            $result=$statement->fetch(PDO::FETCH_ASSOC);
+            return $result;
+        }catch(PDOException $e){
+            return null;
+        }
+    }
+
     function orderTreksInCart(){
         global $projectDB;
         connectProjectDB();
-        $query="SELECT * FROM treks,trekcart where treks.tId=trekcart.TID AND UID=:UID";
         try{
             session_start();    
+            $query="SELECT * FROM treks,trekcart where treks.tId=trekcart.TID AND UID=:UID";
             $statement=$projectDB->prepare($query);
             $statement->bindParam(":UID",$_SESSION['UID']);
             $statement->execute();
             $result=$statement->fetchAll(PDO::FETCH_ASSOC);
 
             $table="<table border='1'>";
-            $table.="<tr><th>Title</th><th>Description</th><th>Date</th><th>Location</th><th>Capacity</th><th>Occupied</th><th>Photo</th><th>Price</th></tr>";
+            $table.="<tr><th>Title</th><th>Description</th><th>Date</th><th>Location</th><th>Photo</th><th>Price</th></tr>";
             foreach($result as $row){
                 $table.="<tr>";
                 $table.="<td>".$row['title']."</td>";
                 $table.="<td>".$row['description']."</td>";
                 $table.="<td>".$row['date']."</td>";
                 $table.="<td>".$row['location']."</td>";
-                $table.="<td>".$row['capacity']."</td>";
-                $table.="<td>".$row['occupied']."</td>";
                 $table.="<td>".$row['photo']."</td>";
                 $table.="<td>".$row['price']."</td>";
                 $table.="</tr>";
             }
             $table.="</table>";
+
+            $query2="INSERT INTO trekordered (UID, TID, DOP) SELECT UID, TID, NOW() FROM trekCart WHERE UID = :UID";
+            $statement2=$projectDB->prepare($query2);
+            $statement2->bindParam(":UID",$_SESSION['UID']);
+            $statement2->execute();
+
+            $query3="DELETE FROM trekCart WHERE UID = :UID";
+            $statement3=$projectDB->prepare($query3);
+            $statement3->bindParam(":UID",$_SESSION['UID']);
+            $statement3->execute();
+
+            $query4="UPDATE treks AS t
+            LEFT JOIN (
+                SELECT TID, COUNT(*) AS count_occupied
+                FROM trekordered
+                GROUP BY TID
+            ) AS to_occupied
+            ON t.TID = to_occupied.TID
+            SET t.occupied = COALESCE(to_occupied.count_occupied, 0)";
+            $statement4=$projectDB->prepare($query4);
+            $statement4->execute();
 
             $to=$_SESSION['email'];
             $subject="List of Items purchased";
@@ -96,7 +147,28 @@
             sendMail($to,$subject,$content);
             return $result;
         }catch(PDOException $e){
+            echo $e->getMessage();
             return null;
         }
     }
+
+    function getPreviouslyOrdered(){
+        global $projectDB;
+        connectProjectDB();
+        $query="SELECT * FROM treks,trekordered where treks.tId=trekordered.TID AND UID=:UID";
+        try{
+            session_start();    
+            $statement=$projectDB->prepare($query);
+            $statement->bindParam(":UID",$_SESSION['UID']);
+            $statement->execute();
+            $result=$statement->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }catch(PDOException $e){
+            return null;
+        }
+    }
+
+    // echo print_r(getTrekCart());
+    // orderTreksInCart();
+    print_r(getPreviouslyOrdered());
 ?>

@@ -98,4 +98,8 @@
         }
     }
 
+
+    // insertTrek('Title','Description','2020-12-12','Location',10,0,'Photo',1000);
+    // echo print_r(fetchAllTreks());
+    addTrekToCart(2);
 ?>

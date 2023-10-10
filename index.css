@@ -11,14 +11,33 @@
 }
 
 .image {
-    width: 100%; 
+    width: 100%;
 }
+
 
 .text {
     position: absolute;
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%);
-    color: white; 
-    font-size: 24px;
+    top: 50%;
+    left: 10%;
+    transform: translate(0%, -70%);
+    color: white;
+    text-align: left;
+    font-size: 80px;
+    font-family: Lexend;
+    font-weight: 300; 
 }
+
+.belowtext{
+    position: absolute;
+    top: 70%;
+    left: 10%;
+    transform: translate(0%, -30%);
+    color: white;
+    text-align: left;
+    font-size: 20px;
+    font-family: Lexend;
+    font-weight: 300; 
+}
+
+
+

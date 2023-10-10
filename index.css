@@ -1,0 +1,6 @@
+.bg{
+    width: 94.875rem;
+    height: 53.625rem;
+    flex-shrink: 0;
+    background: url(./images/logo.png), lightgray 50% / cover no-repeat;
+}

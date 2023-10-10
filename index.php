@@ -11,6 +11,7 @@
 		<div class="container">
 			<img class="image" src="images/backgroundimg.png" alt="Your Image">
 			<div class="text">Discover.<br>Trek.<br>Inspire.<br></div>
+			<div class="belowtext">"Explore, Connect, and Trek the World's Wonders”</div>
 		</div>
 
 

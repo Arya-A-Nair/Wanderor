@@ -27,24 +27,22 @@
 	?>
 		<form method="POST" enctype="multipart/form-data">
 			<label for="title">Title</label>
-			<input type="text" name="title" id="title" placeholder="Title" required />
+			<input type="text" name="title" id="title" placeholder="Title"   />
 			<label for="description">Description</label>
 			<input
 				type="text"
 				name="description"
 				id="description"
 				placeholder="Description"
-				required
 			/>
 			<label for="date">Date</label>
-			<input type="date" name="date" id="date" placeholder="Date" required />
+			<input type="date" name="date" id="date" placeholder="Date"   />
 			<label for="location">Location</label>
 			<input
 				type="text"
 				name="location"
 				id="location"
 				placeholder="Location"
-				required
 			/>
 			<label for="capacity">Capacity</label>
 			<input
@@ -52,7 +50,6 @@
 				name="capacity"
 				id="capacity"
 				placeholder="Capacity"
-				required
 			/>
 			<label for="occupied">Occupied</label>
 			<input
@@ -60,17 +57,15 @@
 				name="occupied"
 				id="occupied"
 				placeholder="Occupied"
-				required
 			/>
 			<label for="photo">Photo</label>
-			<input type="file" name="fileToUpload" id="photo" placeholder="Photo" required />
+			<input type="file" name="fileToUpload" id="photo" placeholder="Photo"   />
 			<label for="price">Price</label>
 			<input
 				type="number"
 				name="price"
 				id="price"
 				placeholder="Price"
-				required
 			/>
 			<input type="submit" value="Submit" />
 		</form>

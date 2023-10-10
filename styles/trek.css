@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+    width:100%;
+    display:grid;
+    grid-template-columns: 3fr 1fr;
+    gap:1rem;
+}
+.container>div{
+    border: 1px solid black;
+    /* height: 10rem; */
+}
+/* .container>div{
+    border: 1px solid black;
+    height: 10rem;
+} */
+.trek-image{
+    width:80%;
+    height:100%; 
+    object-fit: contain;
+    overflow:hidden;
+    margin-left: 10%;
+    border-radius: 32px;
+    max-width: 500px;
+}

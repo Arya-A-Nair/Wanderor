@@ -90,7 +90,6 @@
             $statement->bindParam(":UID",$_SESSION['UID']);
             $statement->bindParam(":TID",$TID);
             $statement->execute();
-            echo "Trek added to cart";
             return true;
         }catch(PDOException $e){
             echo $e->getMessage();

@@ -79,4 +79,23 @@
             return false;
         }
     }
+
+    function addTrekToCart($TID){
+        global $projectDB;
+        connectProjectDB();
+        $query="INSERT INTO trekcart (UID,TID) VALUES (:UID,:TID)";
+        try{
+            session_start();
+            $statement=$projectDB->prepare($query);
+            $statement->bindParam(":UID",$_SESSION['UID']);
+            $statement->bindParam(":TID",$TID);
+            $statement->execute();
+            echo "Trek added to cart";
+            return true;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
 ?>

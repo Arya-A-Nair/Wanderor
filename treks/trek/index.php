@@ -31,15 +31,14 @@
     ?>
     <div class="container">
         <div>
-            <img src="../../uploads/<?php echo $trek['photo'] ?>" class="trek-image"/>
-            
+                <img src="../../uploads/<?php echo $trek['photo'] ?>" class="trek-image"/>
                 <h1><?php echo $trek['title'] ?></h1>
                 <p><?php echo $trek['description'] ?></p>
                 <p><?php echo $trek['location'] ?></p>
                 <h4>₹<?php echo $trek['price'] ?></h4>
-            
         </div>
         <div>
+            
             <form method="POST">
                 <input type="number" name="id" value="<?php echo $trek['tId'] ?>" hidden/>
                 <input type="submit" value="Add to Cart"></input>

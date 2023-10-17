@@ -28,6 +28,7 @@
             $statement->bindParam(":password",$password);
             $statement->execute();
             $result=$statement->fetch(PDO::FETCH_ASSOC);
+            print_r($result);
             if($result){
                 session_start();
                 $_SESSION['username']=$username;
@@ -38,6 +39,7 @@
                 return false;
             }
         }catch(PDOException $e){
+            echo $e->getMessage();
             return false;
         }
     }
@@ -275,5 +277,4 @@
     // orderTreksInCart();
     // print_r(getPreviouslyOrdered());
     // echo cartTotal();
-    orderProductInCart();
 ?>

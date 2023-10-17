@@ -16,13 +16,6 @@
         include "../utils/trekDB.php";
         
         $treks = fetchAllTreks();
-        // foreach($treks as $trek) {
-        //     echo "<div class='trek'>";
-        //     echo "<img src='../uploads/".$trek['photo']."' alt='trek image'>";
-        //     echo "<h2>" . $trek['title'] . "</h2>";
-        //     echo "<p>" . $trek['description'] . "</p>";
-        //     echo "</div>";
-        // }
         foreach($treks as $trek) {
 
 

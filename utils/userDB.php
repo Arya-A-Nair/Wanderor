@@ -28,9 +28,10 @@
             $statement->bindParam(":password",$password);
             $statement->execute();
             $result=$statement->fetch(PDO::FETCH_ASSOC);
-            print_r($result);
             if($result){
-                session_start();
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
                 $_SESSION['username']=$username;
                 $_SESSION['UID']=$result['UID'];
                 $_SESSION['email']=$result['email'];
@@ -44,17 +45,16 @@
         }
     }
 
-    function logout(){
-        session_destroy();
-        header("Location: ../index.php");
-    }
+    
 
     function getTrekCart(){
         global $projectDB;
         connectProjectDB();
-        $query="SELECT * FROM treks,trekcart where treks.tId=trekcart.TID AND UID=:UID";
+        $query="SELECT *,COUNT(*) as quantity FROM treks,trekcart where treks.tId=trekcart.TID AND UID=:UID GROUP BY UID,treks.tId";
         try{
-            session_start();    
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
             $statement=$projectDB->prepare($query);
             $statement->bindParam(":UID",$_SESSION['UID']);
             $statement->execute();
@@ -70,11 +70,14 @@
         connectProjectDB();
         $query="DELETE FROM trekcart WHERE UID=:UID AND TID=:TID";
         try{
-            session_start();    
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
             $statement=$projectDB->prepare($query);
             $statement->bindParam(":UID",$_SESSION['UID']);
             $statement->bindParam(":TID",$TID);
             $statement->execute();
+
             return true;
         }catch(PDOException $e){
             return false;
@@ -85,15 +88,17 @@
         global $projectDB;
         connectProjectDB();
         try{
-            session_start();    
-            $query="SELECT * FROM treks,trekcart where treks.tId=trekcart.TID AND UID=:UID";
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+            $query="SELECT *,COUNT(*) as quantity FROM treks,trekcart where treks.tId=trekcart.TID AND UID=:UID GROUP BY UID,treks.tId";
             $statement=$projectDB->prepare($query);
             $statement->bindParam(":UID",$_SESSION['UID']);
             $statement->execute();
             $result=$statement->fetchAll(PDO::FETCH_ASSOC);
-
-            $table="<table border='1'>";
-            $table.="<tr><th>Title</th><th>Description</th><th>Date</th><th>Location</th><th>Photo</th><th>Price</th></tr>";
+            $table="<h1>Treks</h1>";
+            $table.="<table border='1'>";
+            $table.="<tr><th>Title</th><th>Description</th><th>Date</th><th>Location</th><th>Photo</th><th>Price</th><th>Quantity</th></tr>";
             foreach($result as $row){
                 $table.="<tr>";
                 $table.="<td>".$row['title']."</td>";
@@ -102,6 +107,7 @@
                 $table.="<td>".$row['location']."</td>";
                 $table.="<td>".$row['photo']."</td>";
                 $table.="<td>".$row['price']."</td>";
+                $table.="<td>".$row['quantity']."</td>";
                 $table.="</tr>";
             }
             $table.="</table>";
@@ -131,19 +137,21 @@
             $subject="List of Items purchased";
             $content=$table;
             sendMail($to,$subject,$content);
-            return $result;
+            return true;
         }catch(PDOException $e){
             echo $e->getMessage();
-            return null;
+            return false;
         }
     }
 
     function getPreviouslyOrderedTreks(){
         global $projectDB;
         connectProjectDB();
-        $query="SELECT * FROM treks,trekordered where treks.tId=trekordered.TID AND UID=:UID";
+        $query="SELECT *,COUNT(*) as quantity FROM treks,trekordered where treks.tId=trekordered.TID AND UID=:UID GROUP BY UID,treks.tId";
         try{
-            session_start();    
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }  
             $statement=$projectDB->prepare($query);
             $statement->bindParam(":UID",$_SESSION['UID']);
             $statement->execute();
@@ -157,9 +165,8 @@
     function getProductCart(){
         global $projectDB;
         connectProjectDB();
-        $query1="SELECT * from products,productcart where products.PID=productcart.PID AND UID=:UID";
+        $query1="SELECT *,COUNT(*) as quantity from products,productcart where products.PID=productcart.PID AND UID=:UID GROUP BY UID,products.PID";
         try{
-            session_start();
             $statement=$projectDB->prepare($query1);
             $statement->bindParam(":UID",$_SESSION['UID']);
             $statement->execute();
@@ -174,14 +181,16 @@
         global $projectDB;
         connectProjectDB();
         $query="DELETE FROM productcart WHERE UID=:UID AND PID=:PID";
-        try{
-            session_start();    
+        try{if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
             $statement=$projectDB->prepare($query);
             $statement->bindParam(":UID",$_SESSION['UID']);
             $statement->bindParam(":PID",$PID);
             $statement->execute();
             return true;
         }catch(PDOException $e){
+            echo $e->getMessage();
             return false;
         }
     }
@@ -190,23 +199,26 @@
         global $projectDB;
         connectProjectDB();
         try{
-            session_start();    
-            $query="SELECT * FROM productcart,products where products.PID=productcart.PID AND UID=:UID";
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }   
+            $query="SELECT *,COUNT(*) as quantity FROM productcart,products where products.PID=productcart.PID AND UID=:UID GROUP BY UID,products.PID";
             $statement=$projectDB->prepare($query);
             $statement->bindParam(":UID",$_SESSION['UID']);
             $statement->execute();
             $result=$statement->fetchAll(PDO::FETCH_ASSOC);
 
             echo 
-
-            $table="<table border='1'>";
-            $table.="<tr><th>Title</th><th>Description</th><th>Price</th><th>Photo</th></tr>";
+            $table="<h1>Products</h1>";
+            $table.="<table border='1'>";
+            $table.="<tr><th>Title</th><th>Description</th><th>Price</th><th>Photo</th><th>Quantity</th></tr>";
             foreach($result as $row){
                 $table.="<tr>";
                 $table.="<td>".$row['Title']."</td>";
                 $table.="<td>".$row['description']."</td>";
                 $table.="<td>".$row['price']."</td>";
                 $table.="<td>".$row['Photo']."</td>";
+                $table.="<td>".$row['quantity']."</td>";
                 $table.="</tr>";
             }
             $table.="</table>";
@@ -225,19 +237,21 @@
             $subject="List of Items purchased";
             $content=$table;
             sendMail($to,$subject,$content);
-            return $result;
+            return true;
         }catch(PDOException $e){
             echo $e->getMessage();
-            return null;
+            return false;
         }
     }
 
     function getPreviouslyOrderedProducts(){
         global $projectDB;
         connectProjectDB();
-        $query="SELECT * FROM products,productordered where products.PID=productordered.PID AND UID=:UID";
+        $query="SELECT *,COUNT(*) FROM products,productordered where products.PID=productordered.PID AND UID=:UID GROUP BY UID,products.PID";
         try{
-            session_start();    
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }   
             $statement=$projectDB->prepare($query);
             $statement->bindParam(":UID",$_SESSION['UID']);
             $statement->execute();
@@ -253,7 +267,9 @@
         connectProjectDB();
         try{
             $query="SELECT SUM(price) FROM treks,trekcart where treks.tId=trekcart.TID AND UID=:UID";
-            session_start();    
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            } 
             $statement=$projectDB->prepare($query);
             $statement->bindParam(":UID",$_SESSION['UID']);
             $statement->execute();

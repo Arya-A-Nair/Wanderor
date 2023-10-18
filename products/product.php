@@ -16,19 +16,19 @@
 <body>
     <?php
         include "../navbar.php";
-        include "../utils/trekDB.php";
+        include "../utils/productsDB.php";
         $trek=null;
         $error=null;
 
         if(isset($_GET['id'])){
-            $trek = fetchTrekByID($_GET['id']);
+            $trek = fetchProductByID($_GET['id']);
         }
         if(isset($_POST['id'])){
-            $trek = fetchTrekByID($_POST['id']);
+            $trek = fetchProductByID($_POST['id']);
         }
 
         if($_SERVER['REQUEST_METHOD'] == "POST" ){
-            $status=addTrekToCart($_POST['id']);
+            $status=addProductToCart($_POST['id']);
             if($status==true){
                 $error="Trek added to cart";
             }
@@ -38,17 +38,16 @@
     <div class="container-fluid my-4">
         <div class="row justify-content-between mx-4">
         <div class="col-7 card p-4 ">
-            <img src="../uploads/<?php echo $trek['photo'] ?>" class="trek-image"/>
-            <h1 class="mt-4"><?php echo $trek['title'] ?></h1>
+            <img src="../uploads/<?php echo $trek['Photo'] ?>" class="trek-image"/>
+            <h1 class="mt-4"><?php echo $trek['Title'] ?></h1>
             <p><?php echo $trek['description'] ?></p>
-            <p><?php echo $trek['location'] ?></p>
         </div>
         <div class="col-4 card">
-            <h1 class="mt-4"><?php echo $trek['title'] ?></h1>
+            <h1 class="mt-4"><?php echo $trek['Title'] ?></h1>
             <p><?php echo $trek['description'] ?></p>
             <h4>₹<?php echo $trek['price'] ?></h4>
             <form method="POST">
-                <input type="number" name="id" value="<?php echo $trek['tId'] ?>" hidden/>
+                <input type="number" name="id" value="<?php echo $trek['PID'] ?>" hidden/>
                 <input type="submit" value="Add to Cart" class="btn btn-primary"></input>
                 <p><?php
                 if($error=="Trek added to cart"){

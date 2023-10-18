@@ -13,7 +13,7 @@
     <title>Treks</title>
 </head>
 <body>
-    <?php include "../navbar.html" ?>
+    <?php include "../navbar.php" ?>
     <h1>Treks to explore</h1>
 
     <div class="container p-3" >
@@ -23,30 +23,30 @@
         
         $treks = fetchAllTreks();
         $count=0;
-        foreach($treks as $trek) {
+
+
+        $count = 0;
+        foreach ($treks as $trek) {
+            if ($count % 3 == 0) {
+                echo '<div class="row">';
+            }
+            echo '<div class="col-md-4">
+                    <a href="trek.php?id=' . $trek['tId'] . '" class="card mb-4">
+                        <img src="../uploads/' . $trek['photo'] . '" class="card-img-top" alt="Trek Image">
+                        <div class="card-body">
+                            <h2 class="card-title">' . $trek['title'] . '</h2>
+                            <p class="card-text">' . $trek['description'] . '</p>
+                            <p class="card-text">' . $trek['location'] . '</p>
+                            <h4 class="card-text">₹' . $trek['price'] . '</h4>
+                        </div>
+                    </a>
+                </div>';
+            if ($count % 3 == 2 || $count == count($treks) - 1) {
+                echo '</div>';
+            }
             $count++;
-            if($count%3==0){
-                echo "<div class='row-fluid' style='width:100vw'>";
-            }
-            echo    "<a href='trek.php?id=".$trek['tId']."'>
-            <div class='col card p-3'>
-                        <div class='trek-image'>
-                            <img src='../uploads/".$trek['photo']."'/>
-                        </div>
-                        <div class='trek-container'>
-                            <h2>".$trek['title']."</h2>
-                            <p>".$trek['description']."</p>
-                            <p>".$trek['location']."</p>
-                            <h4>₹".$trek['price']."</h4>
-                        </div>
-                    </div>
-                    </a>";
-            }
-            if($count%3==0){
-                echo "</div>";
-            }
-            
-        ?>
+        }
+                ?>
         </div>
         <script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"

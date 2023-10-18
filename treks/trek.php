@@ -15,7 +15,7 @@
 </head>
 <body>
     <?php
-        include "../navbar.html";
+        include "../navbar.php";
         include "../utils/trekDB.php";
         $trek=null;
         $error=null;

@@ -15,7 +15,14 @@
 	align-items: center;
 	gap: 3rem;
 }
-a{
-    text-decoration: none;
-    color: black;
+a {
+	text-decoration: none;
+	color: black;
+}
+.trek-image {
+	max-width: 100%;
+	max-height: 300px;
+	/* height: 200px; */
+	border-radius: 50px;
+	object-fit: cover;
 }

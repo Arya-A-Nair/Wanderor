@@ -18,6 +18,9 @@
 				<li class="nav-item">
 					<a class="nav-link" href="../cart">Cart</a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../pastOrders">Past Orders</a>
+				</li>
 			</ul>
 		</div>
 		<span class="navbar-text">

@@ -147,7 +147,7 @@
     function getPreviouslyOrderedTreks(){
         global $projectDB;
         connectProjectDB();
-        $query="SELECT *,COUNT(*) as quantity FROM treks,trekordered where treks.tId=trekordered.TID AND UID=:UID GROUP BY UID,treks.tId";
+        $query="SELECT * FROM treks,trekordered where treks.tId=trekordered.TID AND UID=:UID ORDER BY DOP DESC";
         try{
             if (session_status() == PHP_SESSION_NONE) {
                 session_start();
@@ -247,7 +247,7 @@
     function getPreviouslyOrderedProducts(){
         global $projectDB;
         connectProjectDB();
-        $query="SELECT *,COUNT(*) FROM products,productordered where products.PID=productordered.PID AND UID=:UID GROUP BY UID,products.PID";
+        $query="SELECT * FROM products,productordered where products.PID=productordered.PID AND UID=:UID ORDER BY DOP DESC";
         try{
             if (session_status() == PHP_SESSION_NONE) {
                 session_start();

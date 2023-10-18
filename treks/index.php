@@ -28,7 +28,7 @@
             if($count%3==0){
                 echo "<div class='row-fluid' style='width:100vw'>";
             }
-            echo    "<a href='trek?id=".$trek['tId']."'>
+            echo    "<a href='trek.php?id=".$trek['tId']."'>
             <div class='col card p-3'>
                         <div class='trek-image'>
                             <img src='../uploads/".$trek['photo']."'/>

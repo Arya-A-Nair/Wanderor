@@ -16,38 +16,35 @@
     <?php include "./adminnavbar.php" ?>
     <div class="container-flui4 p-3" >
         <div class="d-flex justify-content-between align-items-center">
-            <h1 class="mb-5">Treks</h1>
-            <a href="./addtrek.php" class="btn btn-primary">Add Trek</a>
+            <h1 class="mb-5">Products</h1>
+            <a href="./addproduct.php" class="btn btn-primary">Add Product</a>
         </div>
 
 
         <?php
-        include "../utils/trekDB.php";
+        include "../utils/productsDB.php";
 
-        $treks = fetchAllTreks();
+        $products = fetchAllProducts();
         $count=0;
 
 
         $count = 0;
-        foreach ($treks as $trek) {
+        foreach ($products as $product) {
             if ($count % 4 == 0) {
                 echo '<div class="row">';
             }
             echo '<div class="col-md-3">
                     <div class="card mb-4 p-3">
-                        <img src="../uploads/' . $trek['photo'] . '" class="trek-image" alt="Trek Image"/>
+                        <img src="../uploads/' . $product['Photo'] . '" class="trek-image" alt="Trek Image"/>
                         <div class="card-body">
-                            <h2 class="card-title">' . $trek['title'] . '</h2>
-                            <p class="card-text">' . $trek['description'] . '</p>
-                            <p class="card-text">' . $trek['location'] . '</p>
-                            <h4 class="card-text">₹' . $trek['price'] . '</h4>
-                            <h5 class="card-text">Date: ' . $trek['date'] . '</h5>
-                            <p class="card-text">Occupied: ' . $trek['occupied']."/". $trek['capacity'] . '</p>
-                            <button class="btn btn-primary" onclick="window.location.href=\'edittrek.php?id=' . $trek['tId'] . '\'">Edit</button>
+                            <h2 class="card-title">' . $product['Title'] . '</h2>
+                            <p class="card-text">' . $product['description'] . '</p>
+                            <h4 class="card-text">₹' . $product['price'] . '</h4>
+                            <button class="btn btn-primary" onclick="window.location.href=\'editproduct.php?id=' . $product['PID'] . '\'">Edit</button>
                         </div>
                     </div>
                 </div>';
-            if ($count % 4 == 3 || $count == count($treks) - 1) {
+            if ($count % 4 == 3 || $count == count($product) - 1) {
                 echo '</div>';
             }
             $count++;

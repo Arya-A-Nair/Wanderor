@@ -36,7 +36,7 @@
     function insertProduct($title,$photo,$description,$price){
         global $projectDB;
         connectProjectDB();
-        $query="INSERT INTO products (title,photo,description,price) VALUES (:title,:photo,:description,:price)";
+        $query="INSERT INTO products (title,photo,description,price) VALUES (:title, :photo ,:description , :price)";
         try{
             $statement=$projectDB->prepare($query);
             $statement->bindParam(":title",$title);

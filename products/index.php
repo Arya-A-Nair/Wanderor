@@ -28,8 +28,8 @@
                 echo '<div class="row">';
             }
             echo '<div class="col-md-3">
-                    <a href="product.php?id=' . $product['PID'] . '" class="card mb-4">
-                        <img src="../uploads/' . $product['Photo'] . '" class="card-img-top">
+                    <a href="product.php?id=' . $product['PID'] . '" class="card mb-4 p-3">
+                        <img src="../uploads/' . $product['Photo'] . '" class="trek-image">
                         <div class="card-body">
                             <h2 class="card-title">' . $product['Title'] . '</h2>
                             <p class="card-text">' . $product['description'] . '</p>
@@ -41,8 +41,8 @@
                 echo '</div>';
             }
             $count++;
-        }
-                ?>
+            }
+        ?>
         </div>
         <script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"

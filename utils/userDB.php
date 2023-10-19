@@ -289,6 +289,22 @@
     }
 
 
+    function fetchAllUsers(){
+        global $projectDB;
+        connectProjectDB();
+        $query="SELECT DISTINCT email FROM users;";
+        echo $query;
+        try{
+            $statement=$projectDB->prepare($query);
+            $statement->execute();
+            $result=$statement->fetchAll(PDO::FETCH_ASSOC);
+            echo print_r($result);
+            return $result;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return null;
+        }
+    }
     // echo print_r(getTrekCart());
     // orderTreksInCart();
     // print_r(getPreviouslyOrdered());

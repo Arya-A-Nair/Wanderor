@@ -3,39 +3,26 @@
 	data-bs-theme="dark"
 >
 	<div class="container-fluid">
-		<a class="navbar-brand" href="../">Wanderor</a>
+		<a class="navbar-brand" href="../admin">Wanderor</a>
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" href="../">Home</a>
+					<a class="nav-link" href="./treks.php">Treks</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="../treks">Treks</a>
+					<a class="nav-link" href="./products.php">Products</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="../products">Products</a>
+					<a class="nav-link" href="./users.php">Users</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="../cart">Cart</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="../pastOrders">Past Orders</a>
-				</li>
-				<?php
-					$_SESSION['username'] = "admin";
-					if($_SESSION['username']=="admin"){
-						echo '<li class="nav-item">
-						<a class="nav-link" href="../admin">Admin</a>
-					</li>';
-					}
-				?>
+				
 			</ul>
 		</div>
 		<span class="navbar-text">
 			<form method="POST">
 
 				<?php 
-					include "utils/logout.php";
+					include "../utils/logout.php";
 					if(isset($_POST['logout'])){
 						logout();
 					}

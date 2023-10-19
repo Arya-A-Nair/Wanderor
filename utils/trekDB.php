@@ -1,6 +1,10 @@
 <?php 
     $projectDB=null;
-    include "db.php";
+
+    // if db.php is already included, then don't include it again
+    if(!function_exists('connectProjectDB')){
+        include "db.php";
+    }
 
     function fetchAllTreks(){
         global $projectDB;

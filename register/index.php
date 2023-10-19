@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Login</title>
+		<title>Register</title>
 		<link
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
@@ -17,11 +17,12 @@
 			include "../utils/userDB.php";	
 			$status="";
 			if($_SERVER["REQUEST_METHOD"]=="POST" ){
-				if(login($_POST['username'],$_POST['password'])){
-					$status="Login Successful";
+				if(register($_POST['username'],$_POST['email'],$_POST['password'])){
+					$status="Register Successful";
+					exit(header("Location: ../login/index.php"));
 				}
 				else{
-					$status="Login Failed";
+					$status="Register Failed";
 				}
 				// login();
 			}
@@ -30,7 +31,7 @@
 		<div class="container">
 			<div class="row mb-3">
 				<div class="col-12">
-					<h1 class="text-center">Login</h1>
+					<h1 class="text-center">Register</h1>
 				</div>
 			</div>
 			<form class="card p-5" method="post" enctype="multipart/form-data">
@@ -69,14 +70,14 @@
 				<div class="form-group text-center">
 					<button type="submit" class="btn btn-primary mb-3">Submit</button>
 					<?php 
-						if($status=="Login Successful"){
+						if($status=="Register Successful"){
 							echo "<div class='alert alert-success' role='alert'>
-							Login Successful
+							Register Successful
 							</div>";
 						}
-						else if($status=="Login Failed"){
+						else if($status=="Register Failed"){
 							echo "<div class='alert alert-danger' role='alert'>
-							Login Failed
+							Register Failed
 							</div>";
 						}
 						

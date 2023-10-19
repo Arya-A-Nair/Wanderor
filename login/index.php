@@ -20,7 +20,11 @@
 				if(login($_POST['username'],$_POST['password'])){
 
 					$status="Login Successful";
-					exit(header("Location: ../index.php"));
+					if($_POST['username']=="admin"){
+						exit(header("Location: ../admin/index.php"));
+					}else{
+						exit(header("Location: ../index.php"));
+					}
 				}
 				else{
 					$status="Login Failed";

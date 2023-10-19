@@ -20,8 +20,8 @@
 
         $products=getPreviouslyOrderedProducts();
     ?>
-    <div class="row p-5">
-        <div class="card p-5 my-4">
+    <div class="row-fluid p-5">
+        <div class="card p-4 my-4">
             <div class="d-flex justify-content-between">
                 <div >
                     

@@ -17,16 +17,28 @@
         include "../utils/userDB.php";
     
         $treks=getPreviouslyOrderedTreks();
-        print_r($treks);
 
         $products=getPreviouslyOrderedProducts();
     ?>
     <div class="row p-5">
-        <div class="col-6 card">
-        <h1>Previously ordered treks</h1>
+        <div class="card p-5 my-4">
+            <div class="d-flex justify-content-between">
+                <div >
+                    
+                    <h1>Previously ordered treks</h1>
+                </div>
+                <div>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".trek" aria-expanded="false" aria-controls="collapseExample">
+                        Show/Hide
+                    </button>
+                </div>
+            </div>
+
+        <div class="collapse trek">
     <?php
         foreach($treks as $trek){
-            echo "<div class='card my-4'>
+            echo "<a href='../treks/trek.php?id=".$trek['tId']."'>
+            <div class='card my-4 p-4'>
             <div class='row'>
                 <div class='col-4'>
                     <img src='../uploads/".$trek['photo']."' class='trek-image'/>
@@ -36,17 +48,32 @@
                     <p>".$trek['description']."</p>
                     <p>".$trek['location']."</p>
                     <h4>₹".$trek['price']."</h4>
+                    <h5>Date of Purchase: ". $trek['DOP']."</h5>
                 </div>
-            </div></div>";}
+            </div></div></a>";}
     ?>
+    </div>
 
 
         </div>
-        <div class="col-6 card">
-        <h1>Previously ordered products</h1>
+        <div class="card my-4 p-4">
+        <div class="d-flex justify-content-between">
+                <div >
+                    
+                    <h1>Previously ordered Products</h1>
+                </div>
+                <div >
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".product" aria-expanded="false" aria-controls="collapseExample">
+                        Show/Hide
+                    </button>
+                </div>
+            </div>
+
+        <div class="collapse product">
     <?php
     foreach($products as $product){
-        echo "<div class='card my-4'>
+        echo "<a href='../products/product.php?id=".$product['PID']."'>
+        <div class='card my-4 p-4'>
         <div class='row'>
             <div class='col-4'>
                 <img src='../uploads/".$product['Photo']."' class='trek-image'/>
@@ -55,9 +82,12 @@
                 <h1 class='mt-4'>".$product['Title']."</h1>
                 <p>".$product['description']."</p>
                 <h4>₹".$product['price']."</h4>
+                <h5>Date of Purchase: ". $product['DOP']."</h5>
+
             </div>
-        </div></div>";}
+        </div></div></a>";}
 ?>
+</div>
         </div>
     
     <div>

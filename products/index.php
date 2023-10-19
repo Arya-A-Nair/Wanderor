@@ -14,22 +14,20 @@
 </head>
 <body>
     <?php include "../navbar.php" ?>
-    <h1>Products to explore</h1>
+    <div class="container-fluid p-3" >
+    <h1 class="mb-5">Products to explore</h1>
 
-    <div class="container p-3" >
 
         <?php
         include "../utils/productsDB.php";
         $products=fetchAllProducts();
         
         $count=0;
-
-
         foreach ($products as $product) {
-            if ($count % 3 == 0) {
+            if ($count % 4 == 0) {
                 echo '<div class="row">';
             }
-            echo '<div class="col-md-4">
+            echo '<div class="col-md-3">
                     <a href="product.php?id=' . $product['PID'] . '" class="card mb-4">
                         <img src="../uploads/' . $product['Photo'] . '" class="card-img-top">
                         <div class="card-body">
@@ -39,7 +37,7 @@
                         </div>
                     </a>
                 </div>';
-            if ($count % 3 == 2 || $count == count($product) - 1) {
+            if ($count % 4 == 3 || $count == count($product) - 1) {
                 echo '</div>';
             }
             $count++;

@@ -14,9 +14,9 @@
 </head>
 <body>
     <?php include "../navbar.php" ?>
-    <h1>Treks to explore</h1>
+    <div class="container-flui4 p-3" >
+    <h1 class="mb-5">Treks to explore</h1>
 
-    <div class="container p-3" >
 
         <?php
         include "../utils/trekDB.php";
@@ -27,10 +27,10 @@
 
         $count = 0;
         foreach ($treks as $trek) {
-            if ($count % 3 == 0) {
+            if ($count % 4 == 0) {
                 echo '<div class="row">';
             }
-            echo '<div class="col-md-4">
+            echo '<div class="col-md-3">
                     <a href="trek.php?id=' . $trek['tId'] . '" class="card mb-4">
                         <img src="../uploads/' . $trek['photo'] . '" class="card-img-top" alt="Trek Image">
                         <div class="card-body">
@@ -41,7 +41,7 @@
                         </div>
                     </a>
                 </div>';
-            if ($count % 3 == 2 || $count == count($treks) - 1) {
+            if ($count % 4 == 3 || $count == count($treks) - 1) {
                 echo '</div>';
             }
             $count++;

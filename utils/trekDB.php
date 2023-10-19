@@ -63,10 +63,10 @@
         }
     }
 
-    function editTrek($id, $title, $description, $date, $location, $capacity, $occupied, $photo){
+    function editTrek($id, $title, $description, $date, $location, $capacity, $occupied, $photo, $price){
         global $projectDB;
         connectProjectDB();
-        $query="UPDATE treks SET title=:title, description=:description, date=:date, location=:location, capacity=:capacity, occupied=:occupied, photo=:photo WHERE tid=:id";
+        $query="UPDATE treks SET title=:title, description=:description, date=:date, location=:location, capacity=:capacity, occupied=:occupied, photo=:photo,price=:price WHERE treks.tId=:id";
         try{
             $statement=$projectDB->prepare($query);
             $statement->bindParam(":id",$id);
@@ -77,6 +77,7 @@
             $statement->bindParam(":capacity",$capacity);
             $statement->bindParam(":occupied",$occupied);
             $statement->bindParam(":photo",$photo);
+            $statement->bindParam(":price", $price);
             $statement->execute();
             return true;
         }catch(PDOException $e){

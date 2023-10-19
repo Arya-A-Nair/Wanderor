@@ -24,6 +24,7 @@
 				move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
 				echo print_r($_POST);
 				insertTrek($_POST['title'],$_POST['description'],$_POST['date'],$_POST['location'],$_POST['capacity'],0,$randomNumber.".jpg",$_POST['price']);
+				exit(header("Location: treks.php"));
 			}
 		?>
 

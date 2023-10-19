@@ -102,19 +102,20 @@
                     }else{
 
                         foreach ($products as $item) {
-                            echo '<a href="../products/product.php?id=' . $item['PID'] . '">
+                            echo '
+                            <a href="../products/product.php?id=' . $item['PID'] . '">
                             <div class="card cardrow p-4 mb-4">
                             <div class="cardrow2">
-                            <img src="../uploads/' . $item['Photo'] . '" class="image " alt="Trek Image">
-                            <div class="cardrow1">
-                            <h5 >' . $item['Title'] . '</h5>
-                            <p >' . $item['description'] . '</p>
-                            <p >Price: ₹' . $item['price'] . '</p>
-                            <p> Quantity:' . $item['quantity'] . '</p>
-                            </div>
-                            </div>
-                            <div class="button">
-                            <form method="POST">
+                                <img src="../uploads/' . $item['Photo'] . '" class="image " alt="Trek Image">
+                                    <div class="cardrow1">
+                                        <h5 >' . $item['Title'] . '</h5>
+                                        <p >' . $item['description'] . '</p>
+                                        <p >Price: ₹' . $item['price'] . '</p>
+                                        <p> Quantity:' . $item['quantity'] . '</p>
+                                    </div>
+                                </div>
+                                    <div class="button">
+                                        <form method="POST">
                                         <input hidden name="item" value="product">
                                         
                                         <input hidden name="id" value="' . $item['PID'] . '">

@@ -13,14 +13,17 @@
     <title>Treks</title>
 </head>
 <body>
-    <?php include "../navbar.php" ?>
+    <?php include "./adminnavbar.php" ?>
     <div class="container-flui4 p-3" >
-    <h1 class="mb-5">Treks to explore</h1>
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="mb-5">Treks to explore</h1>
+            <a href="./addtrek.php" class="btn btn-primary">Add Trek</a>
+        </div>
 
 
         <?php
         include "../utils/trekDB.php";
-        
+
         $treks = fetchAllTreks();
         $count=0;
 
@@ -31,15 +34,18 @@
                 echo '<div class="row">';
             }
             echo '<div class="col-md-3">
-                    <a href="trek.php?id=' . $trek['tId'] . '" class="card mb-4 p-3">
-                        <img src="../uploads/' . $trek['photo'] . '" class="trek-image" alt="Trek Image">
+                    <div class="card mb-4 p-3">
+                        <img src="../uploads/' . $trek['photo'] . '" class="trek-image" alt="Trek Image"/>
                         <div class="card-body">
                             <h2 class="card-title">' . $trek['title'] . '</h2>
                             <p class="card-text">' . $trek['description'] . '</p>
                             <p class="card-text">' . $trek['location'] . '</p>
                             <h4 class="card-text">₹' . $trek['price'] . '</h4>
+                            <h5 class="card-text">Date: ' . $trek['date'] . '</h5>
+                            <p class="card-text">Occupied: ' . $trek['occupied']."/". $trek['capacity'] . '</p>
+                            <button class="btn btn-primary" onclick="window.location.href=\'edittrek.php?id=' . $trek['tId'] . '\'">Edit</button>
                         </div>
-                    </a>
+                    </div>
                 </div>';
             if ($count % 4 == 3 || $count == count($treks) - 1) {
                 echo '</div>';

@@ -1,16 +1,20 @@
-.container{
+.container {
 	width: 100vw !important;
 	height: 100vh;
 }
-*{
+* {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
-a{
+a {
 	text-decoration: none;
-	color:black
+	color: black;
 }
-.trek-image>img{
+.trek-image > img {
 	width: 10px;
+}
+.trek-image {
+	max-width: 100%;
+	aspect-ratio: 1/1;
 }

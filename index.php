@@ -63,9 +63,9 @@
 
         .belowtext {
             position: absolute;
-            top: 75%; /* Adjust the vertical position as needed */
+            top: 80%;
             left: 10%;
-            transform: translate(0%, -50%); /* Adjust the transform to vertically center */
+            transform: translate(0%, -50%); 
             color: white;
             text-align: left;
             font-size: 20px;
@@ -73,14 +73,43 @@
             font-weight: 300;
         }
 
-        /* Style for the logo */
+     
         .logo {
-            margin-left: 20px; /* Add some space to the left of the logo */
+            margin-left: 20px; 
         }
 
         .right-section {
             display: flex;
         }
+
+		.written{
+			color: #000;
+			font-family: 'Lexend Deca';
+			font-size: 1.3rem;
+			font-style: normal;
+			font-weight: 500;
+			margin: 1rem;
+			display: flex;
+			width: 20rem;
+			height: 6.3125rem;
+			flex-direction: column;
+			justify-content: center;
+			flex-shrink: 0;
+		}
+
+		.cimg-container {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			overflow-x: auto; /* Allow horizontal scrolling if the content exceeds the screen width */
+		}
+
+		.cimg {
+			width: 15rem;
+			height: 12rem;
+			border-radius: 5rem;
+			margin: 1.5rem;
+		}
     </style>
 </head>
 <body>
@@ -118,6 +147,15 @@
         <img class="image" src="uploads/backgroundimg.png" alt="Your Image">
         <div class="text">Discover.<br>Trek.<br>Inspire.<br></div>
         <div class="belowtext">"Explore, Connect, and Trek the World's Wonders"</div>
+    </div>
+
+    
+    
+    <div class="cimg-container">
+	    <div class="written">Top destinations suggested by expert guides</div>
+        <img class="cimg" src="uploads/image5.png" alt="Image 1">
+        <img class="cimg" src="uploads/image6.png" alt="Image 2">
+        <img class="cimg" src="uploads/image7.png" alt="Image 3">
     </div>
 </body>
 </html>

@@ -3,17 +3,8 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    background: transparent;
 }
-
-.container {
-    position: relative;
-    text-align: center;
-}
-
-.image {
-    width: 100%;
-}
-
 
 .text {
     position: absolute;
@@ -38,6 +29,41 @@
     font-family: Lexend;
     font-weight: 300; 
 }
+
+
+
+
+/* Style for the navbar
+.navbar {
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Style for the navbar elements
+.navbar a {
+    text-decoration: none;
+    color: white;
+    margin: 0 10px;
+} */
+
+/* Style for the logout button */
+/* .logout-btn {
+    background-color: white;
+    color: black;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+}  */
+
+
+
+
+
+
+
 
 
 

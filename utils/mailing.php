@@ -18,12 +18,12 @@
             $mail->isSMTP();                                           
             $mail->Host       = 'smtp.gmail.com';                    
             $mail->SMTPAuth   = true;                                  
-            $mail->Username   = 'arya.an@somaiya.edu';                     
+            $mail->Username   = 'np2@somaiya.edu';                     
             $mail->Password   = $password;                               
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
             $mail->Port       = 465;     
             
-            $mail->setFrom('arya.an@somaiya.edu','Wanderer');
+            $mail->setFrom('np2@somaiya.edu','Wanderer');
             $mail->addAddress($to,'Customer');
             $mail->isHTML(true);
             

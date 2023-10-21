@@ -3,7 +3,7 @@
 	data-bs-theme="dark"
 >
 	<div class="container-fluid">
-		<a class="navbar-brand" href="../">Wanderor</a>
+		<a class="navbar-brand" href="./">Wanderor</a>
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item">

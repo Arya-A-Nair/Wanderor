@@ -78,7 +78,7 @@
 					/>
 				</div>
 				<div class="card p-4 my-4 input">
-					<button type="submit" class="btn btn-primary">Add Trek</button>
+					<button type="submit" class="btn btn-primary">Add Product</button>
 				</div>
 			</form>
 		</div>

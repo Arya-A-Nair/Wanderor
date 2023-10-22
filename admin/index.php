@@ -44,7 +44,7 @@
                     $treks=getAllPreviouslyOrderedTreks();
                     echo "<h5>Total Products and treks ordered: ".count($products)+count($treks)."</h5>";
                 ?>
-                <a href="./users.phps" class="btn btn-primary">View user wise</a>
+                <a href="./users.php" class="btn btn-primary">View user wise</a>
             </div>
             <div class="col-5 p-5 m-5 card text-center">
                 <h4>Products and treks in cart</h4>
@@ -53,7 +53,7 @@
                     $treks=getAllCartTreks();
                     echo "<h5>Total Products and treks in cart: ".count($products)+count($treks)."</h5>";
                 ?>
-                <a href="./users.phps" class="btn btn-primary">View user wise</a>
+                <a href="./users.php" class="btn btn-primary">View user wise</a>
             </div>
         </div>
     </div>

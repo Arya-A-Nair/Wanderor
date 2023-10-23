@@ -102,16 +102,6 @@
         </a>
     </div>
 
-    <!-- <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2023 Your Website Name</p>
-            <ul class="footer-nav">
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Service</a></li>
-            </ul>
-        </div>
-    </footer> -->
-
 
 </body>
 </html>

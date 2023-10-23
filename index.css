@@ -71,8 +71,15 @@ body {
 
 .right-section {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+
 }
 
+.right-section>a{
+    margin: 10px 10px;
+    font-size: 1rem;
+}
 .written {
     color: #000;
     font-family: 'Lexend Deca';
@@ -146,6 +153,7 @@ width: 30rem;
 .explore-buttons {
     display: flex;
     justify-content: space-evenly; 
+    gap:1rem;
     margin: 4rem;/* Distribute space evenly between buttons */
 }
 
@@ -214,7 +222,7 @@ width: auto;
             display: flex;
             justify-content: space-evenly;
             align-items: center;
-            margin: 0 auto; /* Center the wrapper horizontally */
+            margin: 1rem auto; /* Center the wrapper horizontally */
           }
           
           .image2 {

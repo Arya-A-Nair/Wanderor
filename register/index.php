@@ -17,15 +17,33 @@
 			include "../utils/userDB.php";	
 			$status="";
 			if($_SERVER["REQUEST_METHOD"]=="POST" ){
-				if(register($_POST['username'],$_POST['email'],$_POST['password'])){
-					$status="Register Successful";
-					exit(header("Location: ../login/index.php"));
+					$password=$_POST["password"];
+					if(strlen($password)<8){
+						$status="Password should be at least 8 characters";
+					}
+					else if(!preg_match("#[0-9]+#",$password)){
+						$status="Password should contain at least 1 number";
+					}
+					else if(!preg_match("#[A-Z]+#",$password)){
+						$status="Password should contain at least 1 uppercase letter";
+					}
+					else if(!preg_match("#[a-z]+#",$password)){
+						$status="Password should contain at least 1 lowercase letter";
+					}
+					else if(!preg_match("#[\W]+#",$password)){
+						$status="Password should contain at least 1 special character";
+					}
+					else if(register($_POST['username'],$_POST['email'],$_POST['password'])){
+						$status="Register Successful";
+						exit(header("Location: ../login/index.php"));
+					}
+					else{
+						$status="Register Failed";
+					}
 				}
-				else{
-					$status="Register Failed";
-				}
-				// login();
-			}
+
+				
+			
 		?>
 
 		<div class="container">
@@ -75,9 +93,9 @@
 							Register Successful
 							</div>";
 						}
-						else if($status=="Register Failed"){
+						else if($status!=""){
 							echo "<div class='alert alert-danger' role='alert'>
-							Register Failed
+							$status
 							</div>";
 						}
 						

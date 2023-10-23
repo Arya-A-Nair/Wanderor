@@ -132,15 +132,10 @@
             SET t.occupied = COALESCE(to_occupied.count_occupied, 0)";
             $statement4=$projectDB->prepare($query4);
             $statement4->execute();
-
-            $to=$_SESSION['email'];
-            $subject="List of Items purchased";
-            $content=$table;
-            sendMail($to,$subject,$content);
-            return true;
+            return $table;
         }catch(PDOException $e){
             echo $e->getMessage();
-            return false;
+            return null;
         }
     }
 
@@ -208,7 +203,7 @@
             $statement->execute();
             $result=$statement->fetchAll(PDO::FETCH_ASSOC);
 
-            echo 
+            
             $table="<h1>Products</h1>";
             $table.="<table border='1'>";
             $table.="<tr><th>Title</th><th>Description</th><th>Price</th><th>Photo</th><th>Quantity</th></tr>";
@@ -233,14 +228,10 @@
             $statement3->bindParam(":UID",$_SESSION['UID']);
             $statement3->execute();
 
-            $to=$_SESSION['email'];
-            $subject="List of Items purchased";
-            $content=$table;
-            sendMail($to,$subject,$content);
-            return true;
+            return $table;
         }catch(PDOException $e){
             echo $e->getMessage();
-            return false;
+            return null;
         }
     }
 
@@ -309,4 +300,19 @@
     // orderTreksInCart();
     // print_r(getPreviouslyOrdered());
     // echo cartTotal();
+    function checkout(){
+        try{
+            $product=orderProductInCart();
+            $trek=orderTreksInCart();  
+            $to=$_SESSION['email'];
+            $subject="List of Items purchased";
+            $content=$product.$trek;
+            sendMail($to,$subject,$content);
+            return true;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+
+    }
 ?>

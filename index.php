@@ -10,7 +10,6 @@
 </head>
 <body>
     <div class="navbar">
-        
         <a class="logo" href="./">
             <img src="images/logo.png" alt="Your Logo" width="150" height="50">
         </a>
@@ -20,8 +19,7 @@
             <a href="./cart">Cart</a>
             <a href="./pastOrders">Past Orders</a>
             <?php
-            session_start();
-            $_SESSION['username'] = "admin";
+            if(session_status() == PHP_SESSION_NONE) session_start();
             if ($_SESSION['username'] == "admin") {
                 echo '<a href="./admin">Admin</a>';
             }
@@ -102,16 +100,6 @@
             </div>
         </a>
     </div>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2023 Your Website Name</p>
-            <ul class="footer-nav">
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Service</a></li>
-            </ul>
-        </div>
-    </footer>
 
 
 </body>

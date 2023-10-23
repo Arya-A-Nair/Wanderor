@@ -19,8 +19,7 @@
             <a href="./cart">Cart</a>
             <a href="./pastOrders">Past Orders</a>
             <?php
-            session_start();
-            $_SESSION['username'] = "admin";
+            if(session_status() == PHP_SESSION_NONE) session_start();
             if ($_SESSION['username'] == "admin") {
                 echo '<a href="./admin">Admin</a>';
             }

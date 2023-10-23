@@ -22,7 +22,7 @@
 					<a class="nav-link" href="../pastOrders">Past Orders</a>
 				</li>
 				<?php
-					$_SESSION['username'] = "admin";
+					if(session_status() == PHP_SESSION_NONE) session_start();
 					if($_SESSION['username']=="admin"){
 						echo '<li class="nav-item">
 						<a class="nav-link" href="../admin">Admin</a>

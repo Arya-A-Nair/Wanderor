@@ -10,7 +10,6 @@
 </head>
 <body>
     <div class="navbar">
-        
         <a class="logo" href="./">
             <img src="images/logo.png" alt="Your Logo" width="150" height="50">
         </a>
@@ -103,7 +102,7 @@
         </a>
     </div>
 
-    <footer class="footer">
+    <!-- <footer class="footer">
         <div class="footer-content">
             <p>&copy; 2023 Your Website Name</p>
             <ul class="footer-nav">
@@ -111,7 +110,7 @@
                 <li><a href="#">Terms of Service</a></li>
             </ul>
         </div>
-    </footer>
+    </footer> -->
 
 
 </body>

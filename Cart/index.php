@@ -13,29 +13,21 @@
     <link href="../styles/cart.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-    <?php include "../navbar.php" ;
+    <?php include "../navbar.php" ;?>
+    <div class="container-fluid px-5 py-5 ">
+    <?php 
         include "../utils/userDB.php";
         if($_SERVER['REQUEST_METHOD'] == "POST" ){
             if(isset($_POST['cart'])){
-                    $status=orderProductInCart();
-                    if($status== 1){
-                        echo "<div class='alert alert-success' role='alert'>
-                        Products checked out successfully
-                        </div>";
+                    $status=checkout();
+                    if($status){
+                        echo '<div class="alert alert-success" role="alert">
+                        Order Placed Successfully
+                        </div>';
                     }else{
-                        echo "<div class='alert alert-danger' role='alert'>
-                        Products checkout failed
-                        </div>";
-                    }
-                    $status=orderTreksInCart();
-                    if($status==1){
-                        echo "<div class='alert alert-success' role='alert'>
-                        Treks checked out successfully
-                        </div>";
-                    }else{
-                        echo "<div class='alert alert-danger' role='alert'>
-                        Trek checkout failed
-                        </div>";
+                        echo '<div class="alert alert-danger" role="alert">
+                        Error in placing order
+                        </div>';
                     }
                 
             }else{
@@ -53,7 +45,6 @@
 
 
     ?>
-    <div class="container-fluid px-5 py-5 ">
         <h1>Your cart</h1>
         <div class="row">
             <div class="col-8 ">
